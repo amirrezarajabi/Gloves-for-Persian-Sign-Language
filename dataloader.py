@@ -2,6 +2,7 @@ import os
 import numpy as np
 import re
 import torch
+from tqdm.auto import tqdm
 
 from conf import *
 
@@ -14,6 +15,7 @@ class DataLoader:
         self.data = []
         self.BLANK = len(self.classes)
         self.ratio = ratio
+        self.data_loader()
 
     def line2float(self, line: str):
         return [float(i) for i in line[:-1].split(" ")]
@@ -39,9 +41,10 @@ class DataLoader:
             self.data.append([np.array(x), [self.classes2index[move] for move in y]])
     
     def data_loader(self):
-        for file in self.dir:
+        files = os.listdir(self.dir)
+        for file in tqdm(files):
             if file.endswith("txt"):
-                self.file2data(file=file)
+                self.file2data(file=self.dir+file)
     
     def train_val_split(self, ith):
         split_size = int(self.ratio * len(self.data))

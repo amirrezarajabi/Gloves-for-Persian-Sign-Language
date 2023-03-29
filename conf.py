@@ -23,3 +23,5 @@ def output_ctc(output):
         if output[i] == "_":
             tmp = output[i]
     return ans
+
+RANDOM_SEED = 42
