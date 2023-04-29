@@ -4,7 +4,7 @@ CLASSES = [
     "Bad",
     "Bakht",
     "Khosh",
-    "Mobarak",
+    "Mobark",
     "Mohandes",
 ]
 
